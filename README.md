@@ -47,6 +47,10 @@ Dependencies:
 ```
 </details>
 
+### [Dockerfile](/Dockerfile)
+
+マルチステージングビルドを利用して、OpenJDK イメージで Spring Boot アプリケーションのビルドを行った後、その生成物の jar ファイルを Ubuntu イメージにコピーします。その後、Ubuntu イメージで Java と MySQL をインストールして起動します。
+
 ### [my.cnf](/my.cnf)
 
 MySQL の設定ファイルです。メモリの使用量を削減するため、パフォーマンススキーマを無効にしています。
