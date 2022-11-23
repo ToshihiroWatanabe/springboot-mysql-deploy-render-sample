@@ -15,7 +15,18 @@ READMEの作成日: 2022年11月23日
 - 15分間リクエストが来ないと動作が一時停止する。一時停止した後の最初のリクエストは最大で30秒の応答遅延が発生する
 - RAM: 512MB
 
-## Spring Initializrで使用した条件
+### デプロイ手順
+
+1. [Render](https://render.com/) にログインする。自分のプライベートリポジトリからデプロイしたい場合は、GitHub または GitLab と連携しておく。
+1. Dashboard ページを開き、「 New > Web Service 」から新規Webサービス作成画面に移動する。
+1. 自分のプライベートリポジトリを選択するか、パブリックリポジトリのURLを入力する。
+1. 「 Name 」に Web サービス名を入力する。その他の項目はデフォルトのままでデプロイできる。
+
+※正しいソースコードでログが正常の場合でも、Render側でデプロイ失敗の判定になることがあります。その場合は各 Web サービス画面の「 Manual Deploy > Clear build cache & deploy 」を試すとうまくいくかもしれません。
+
+## 備考
+
+### Spring Initializr で使用した条件
 	
 ```
 Project: Gradle Project
@@ -35,3 +46,8 @@ Dependencies:
   MyBatis
 ```
 </details>
+
+### [my.cnf](/my.cnf)
+
+MySQL の設定ファイルです。メモリの使用量を削減するため、パフォーマンススキーマを無効にしています。
+
