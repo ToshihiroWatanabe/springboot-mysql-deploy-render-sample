@@ -8,7 +8,7 @@ READMEの作成日: 2022年11月23日
 
 ### Free Plan の制約
 
-- Java や MySQL をネイティブサポートしていない     
+- **Java や MySQL をネイティブサポートしていない**     
 → 今回は Docker のコンテナ1つで Java と MySQL の両方を動かす
 - 起動時間: 1ヶ月あたり750時間  
 → 1つのアプリなら24時間常時起動できる
@@ -26,8 +26,18 @@ READMEの作成日: 2022年11月23日
 
 ## 備考
 
-### Spring Initializr で使用した条件
-	
+### [Dockerfile](/Dockerfile)
+
+マルチステージングビルドを利用して、OpenJDK イメージで Spring Boot アプリケーションのビルドを行った後、その生成物の jar ファイルを Ubuntu イメージにコピーします。その後、Ubuntu イメージで Java と MySQL をインストールして起動します。
+
+※環境変数PORTが無いとデプロイに失敗するので、```ENV PORT=8080```を記述しています。
+
+### [my.cnf](/my.cnf)
+
+MySQL の設定ファイルです。メモリの使用量を削減するため、パフォーマンススキーマを無効にしています。
+
+### Spring Initializr で生成したときの設定
+
 ```
 Project: Gradle Project
 Language: Java
@@ -45,15 +55,3 @@ Dependencies:
   MySQL Driver
   MyBatis
 ```
-</details>
-
-### [Dockerfile](/Dockerfile)
-
-マルチステージングビルドを利用して、OpenJDK イメージで Spring Boot アプリケーションのビルドを行った後、その生成物の jar ファイルを Ubuntu イメージにコピーします。その後、Ubuntu イメージで Java と MySQL をインストールして起動します。
-
-※環境変数PORTが無いとデプロイに失敗するので、```ENV PORT=8080```を記述しています。
-
-### [my.cnf](/my.cnf)
-
-MySQL の設定ファイルです。メモリの使用量を削減するため、パフォーマンススキーマを無効にしています。
-
